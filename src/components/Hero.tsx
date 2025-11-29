@@ -58,7 +58,15 @@ export default function Hero() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.6 }}
                 >
-                    <button className="bg-primary hover:bg-primary/90 text-white font-bold py-4 px-8 rounded-none border-2 border-transparent hover:border-white transition-all transform hover:scale-105 shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)]">
+                    <button
+                        onClick={() => {
+                            const gallery = document.getElementById("gallery");
+                            if (gallery) {
+                                gallery.scrollIntoView({ behavior: "smooth" });
+                            }
+                        }}
+                        className="bg-primary hover:bg-primary/90 text-white font-bold py-4 px-8 rounded-none border-2 border-transparent hover:border-white transition-all transform hover:scale-105 shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)]"
+                    >
                         EXPLORAR A GALERIA
                     </button>
                 </motion.div>

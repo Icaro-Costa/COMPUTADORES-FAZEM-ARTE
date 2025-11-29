@@ -55,7 +55,7 @@ export default function Gallery() {
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
     return (
-        <section className="py-20 px-4 bg-background relative z-10">
+        <section id="gallery" className="py-20 px-4 bg-background relative z-10">
             <div className="max-w-7xl mx-auto">
                 <motion.h2
                     initial={{ opacity: 0, x: -20 }}
