@@ -37,11 +37,7 @@ export default function About() {
                         fill
                         className="object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
 
-                    <div className="absolute bottom-0 left-0 w-full p-6 text-center">
-                        <span className="font-mono text-primary text-xl font-bold">&lt;MangueBit /&gt;</span>
-                    </div>
                 </motion.div>
             </div>
         </section>
