@@ -29,13 +29,15 @@ export default function About() {
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    className="relative h-[400px] border-2 border-primary/30 rounded-lg overflow-hidden"
+                    className="relative border-2 border-primary/30 rounded-lg overflow-hidden"
                 >
                     <Image
                         src="/Foto-Da-Turma.jpg"
                         alt="Foto da Turma MangueBit"
-                        fill
-                        className="object-cover"
+                        width={0}
+                        height={0}
+                        sizes="100vw"
+                        style={{ width: '100%', height: 'auto' }}
                     />
 
                 </motion.div>
