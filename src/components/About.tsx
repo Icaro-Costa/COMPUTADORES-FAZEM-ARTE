@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function About() {
     return (
@@ -28,17 +29,18 @@ export default function About() {
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    className="relative h-[400px] border-2 border-primary/30 rounded-lg p-4"
+                    className="relative h-[400px] border-2 border-primary/30 rounded-lg overflow-hidden"
                 >
-                    <div className="absolute inset-0 bg-primary/5 animate-pulse" />
-                    <div className="h-full w-full border border-primary/20 flex items-center justify-center relative overflow-hidden">
-                        {/* Decorative elements */}
-                        <div className="absolute top-0 left-0 w-full h-1 bg-primary/50" />
-                        <div className="absolute bottom-0 left-0 w-full h-1 bg-secondary/50" />
-                        <div className="text-center">
-                            <span className="block text-6xl mb-2">🦀</span>
-                            <span className="font-mono text-primary text-xl">&lt;MangueBit /&gt;</span>
-                        </div>
+                    <Image
+                        src="/class-photo.svg"
+                        alt="Foto da Turma MangueBit"
+                        fill
+                        className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+
+                    <div className="absolute bottom-0 left-0 w-full p-6 text-center">
+                        <span className="font-mono text-primary text-xl font-bold">&lt;MangueBit /&gt;</span>
                     </div>
                 </motion.div>
             </div>
