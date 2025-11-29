@@ -32,7 +32,7 @@ export default function About() {
                     className="relative h-[400px] border-2 border-primary/30 rounded-lg overflow-hidden"
                 >
                     <Image
-                        src="/class-photo.svg"
+                        src="/Foto-Da-Turma.jpg"
                         alt="Foto da Turma MangueBit"
                         fill
                         className="object-cover"
