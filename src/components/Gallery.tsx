@@ -1,14 +1,15 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
 const artworks = [
     {
         id: 1,
-        title: "Caranguejo Cibernético",
+        title: "O Mar",
         artist: "Icaro - Costa",
-        description: "Uma releitura do símbolo do manguebeat com traços de circuito impresso.",
+        description: "Uma releitura do Mar com traços de mórbidos.",
         color: "bg-primary",
         image: "/Artista01.png",
     },
@@ -50,6 +51,8 @@ const artworks = [
 ];
 
 export default function Gallery() {
+    const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
     return (
         <section className="py-20 px-4 bg-background relative z-10">
             <div className="max-w-7xl mx-auto">
@@ -70,7 +73,8 @@ export default function Gallery() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            className="group relative aspect-square overflow-hidden border-2 border-zinc-800 hover:border-primary transition-colors"
+                            className={`group relative aspect-square overflow-hidden border-2 border-zinc-800 hover:border-primary transition-colors ${art.image ? 'cursor-pointer' : ''}`}
+                            onClick={() => art.image && setSelectedImage(art.image)}
                         >
                             {/* Image or Placeholder */}
                             {art.image ? (
@@ -95,6 +99,43 @@ export default function Gallery() {
                     ))}
                 </div>
             </div>
+
+            {/* Lightbox Modal */}
+            <AnimatePresence>
+                {selectedImage && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        onClick={() => setSelectedImage(null)}
+                        className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm"
+                    >
+                        <motion.div
+                            initial={{ scale: 0.8, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.8, opacity: 0 }}
+                            className="relative w-full max-w-5xl h-[80vh]"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <Image
+                                src={selectedImage}
+                                alt="Artwork Fullscreen"
+                                fill
+                                className="object-contain"
+                            />
+                            <button
+                                onClick={() => setSelectedImage(null)}
+                                className="absolute -top-12 right-0 text-white hover:text-primary transition-colors"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                            </button>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </section>
     );
 }
