@@ -1,14 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const artworks = [
     {
         id: 1,
         title: "Caranguejo Cibernético",
-        artist: "Artista 01",
+        artist: "Icaro - Costa",
         description: "Uma releitura do símbolo do manguebeat com traços de circuito impresso.",
         color: "bg-primary",
+        image: "/Artista01.png",
     },
     {
         id: 2,
@@ -70,8 +72,17 @@ export default function Gallery() {
                             transition={{ delay: index * 0.1 }}
                             className="group relative aspect-square overflow-hidden border-2 border-zinc-800 hover:border-primary transition-colors"
                         >
-                            {/* Placeholder for Image */}
-                            <div className={`w-full h-full ${art.color} opacity-20 group-hover:opacity-40 transition-opacity duration-500`} />
+                            {/* Image or Placeholder */}
+                            {art.image ? (
+                                <Image
+                                    src={art.image}
+                                    alt={art.title}
+                                    fill
+                                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                                />
+                            ) : (
+                                <div className={`w-full h-full ${art.color} opacity-20 group-hover:opacity-40 transition-opacity duration-500`} />
+                            )}
 
                             <div className="absolute inset-0 flex flex-col justify-end p-6 bg-gradient-to-t from-black/90 to-transparent translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                                 <h3 className="text-2xl font-bold text-white mb-1">{art.title}</h3>
